@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Review Sensei</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+    <div class="app-shell">
+        <header class="hero">
+            <div>
+                <p class="eyebrow">AI REVIEW INSIGHTS</p>
+                <h1>Reviews sentiment analysis for Glossary App.</h1>
+                <p class="lede">
+                    Paste any customer review and our FastAPI-powered model will classify the sentiment
+                    and surface similar feedback from the dataset.
+                </p>
+            </div>
+            <div class="hero-card">
+                <p class="hero-label">Models online</p>
+                <p class="hero-value">Sentiment + Similarity</p>
+                <p class="hero-meta">Backed by TF-IDF + Naive Bayes</p>
+            </div>
+        </header>
+
+        <main class="workspace">
+            <section class="panel prompt-panel">
+                <div class="panel-heading">
+                    <h2>Try a review</h2>
+                    <p>Describe the customer feedback you want to analyze.</p>
+                </div>
+                <form id="chatForm">
+                    <label for="message" class="sr-only">Customer review</label>
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="6"
+                        placeholder="e.g. The new update finally fixed the lag, but checkout is still buggy..."
+                        required
+                    ></textarea>
+                    <button type="submit" id="submitButton">
+                        <span>Analyze review</span>
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path d="M3 12h18M12 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </form>
+                <p class="helper-text">
+                    Need inspiration? Try "Great battery life but the camera quality disappoints."
+                </p>
+                <div class="suggestion-board" id="suggestionBoard">
+                    <!-- Suggestion cards rendered via JS -->
+                </div>
+            </section>
+
+            <section class="panel results-panel">
+                <div class="panel-heading">
+                    <h2>Insights</h2>
+                    <p>Sentiment scores + most similar reviews.</p>
+                </div>
+
+                <div id="statusCard" class="status-card">
+                    <p>Send a message to see predictions.</p>
+                </div>
+
+                <div id="sentimentCard" class="sentiment-card hidden">
+                    <div class="sentiment-tag" id="sentimentTag">Positive</div>
+                    <p class="confidence">
+                        Confidence: <span id="confidenceValue">0%</span>
+                    </p>
+                </div>
+
+                <div id="matchesList" class="matches-grid hidden">
+                    <!-- Match cards injected here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <template id="matchTemplate">
+        <article class="match-card">
+            <div class="match-score">
+                <p>Similarity</p>
+                <span class="score-value">0.00</span>
+            </div>
+            <p class="match-text">Sample review text...</p>
+            <footer>
+                <span class="pill sentiment-pill">Sentiment</span>
+                <span class="pill platform-pill">Platform</span>
+            </footer>
+        </article>
+    </template>
+
+    <script type="module" src="/static/app.js"></script>
+    <footer class="builder-credit">
+        Developed by Sahil Kasana • <a href="https://www.linkedin.com/in/sahil-kasana6055/" target="_blank" rel="noopener">LinkedIn</a>
+    </footer>
+</body>
+</html>
+
